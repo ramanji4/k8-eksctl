@@ -3,7 +3,7 @@ kind: ClusterConfig
 
 metadata:
   name: expense
-  region: eu-east-1
+  region: us-east-1
 
 managedNodeGroups:
   - name: expense
