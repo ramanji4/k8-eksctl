@@ -24,11 +24,20 @@ VALIDATE(){
 
 if [$USERID -ne 0]
 then
-    echo "Please run the script with root privileges."
+    echo -e "$R Please run the script with root privileges. $N"
     exit 1
 else
     echo "You are super user"
 fi
+
+#Resize EBS storage
+lsblk
+sudo growpart /dev/nvme0n1 4
+sudo lvextend -l +50%FREE /dev/RootVG/rootVol
+sudo lvextend -l +50%FREE /dev/RootVG/varVol
+sudo xfs_growfs /
+sudo xfs_growfs /var
+
 
 #docker
 sudo dnf -y install dnf-plugins-core
