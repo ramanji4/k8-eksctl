@@ -7,14 +7,13 @@ module "workstation" {
   vpc_security_group_ids = [var.sg_id]
   subnet_id              = var.public_subnet_id
   user_data = file("workstation.sh")
+  create_security_group = false
 
-  root_block_device = [
-    {
-      volume_size = 50          # Size in GiB
-      volume_type = "gp3"       # Recommended general purpose volume type
-      delete_on_termination = true
-    }
-  ]
+  root_block_device = {
+    delete_on_termination = true
+    size                  = 50
+    type                  = "gp3"
+  }
 
   tags = {
     Name = "workstation"

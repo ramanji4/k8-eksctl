@@ -2,11 +2,11 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "5.96.0"
+      version = "6.0.0"
     }
   }
   backend "s3" {
-    bucket = "devops-practice-with-aws"
+    bucket = "devops-aws-remote-state"
     key    = "k8-eksctl"
     region = "us-east-1"
     dynamodb_table = "DevOps-Practice"
